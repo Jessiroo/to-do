@@ -1,32 +1,27 @@
-import { useEffect } from 'react';
-import { signOut, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/firebase_config';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import AuthContext from '../context/auth-context';
 import Button from '../Layout/Button';
 import Card from '../Layout/Card';
 import classes from './Home.module.css';
 
 const HomePage = () => {
+  const {
+    userId,
+    clearUser,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
   
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-      } else {
-        navigate('/');
-      };
-    });
-  }, []);
+    if (!userId) {
+      navigate('');
+    };
+  }, [userId]);
 
   // Handler Functions
   const signOutHandler = () => {
-    signOut(auth).then(() => {
-      navigate('/');
-    }).catch((err) => {
-      alert(err.message)
-    });
+    clearUser();
   };
 
   // Page Return

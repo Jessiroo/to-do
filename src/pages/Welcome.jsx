@@ -1,25 +1,27 @@
-import { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/firebase_config';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import classes from './Welcome.module.css';
+import AuthContext from '../context/auth-context';
 import Card from '../Layout/Card';
 import Button from '../Layout/Button';
+import classes from './Welcome.module.css';
 
 const WelcomePage = () => {
+  const {
+    userId,
+    updateUser,
+   } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
 
   // AuthState useEffect
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigate('/home');
-      };
-    });
-  }, []);
+    if (userId) {
+      navigate('/');
+    };
+  }, [userId]);
 
   // Handler Functions
   const emailChangeHandler = (event) => {
@@ -31,11 +33,11 @@ const WelcomePage = () => {
   };
 
   const signInHandler = () => {
-    signInWithEmailAndPassword(auth, email, password).then(() => {
-      navigate('/home');
-    }).catch((err) => {
-      alert(err.message);
-    });
+    updateUser(email, password);
+  };
+
+  const createAccountHandler = () => {
+    setIsRegistering(true);
   };
 
   return (
@@ -43,6 +45,7 @@ const WelcomePage = () => {
       <input onChange={emailChangeHandler} type="email" />
       <input onChange={passwordChangeHandler} type="password" />
       <Button onClick={signInHandler} >Submit</Button>
+      <Button onClick={createAccountHandler}>Create an Account</Button>
     </Card>
   );
 };
