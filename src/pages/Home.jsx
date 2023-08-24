@@ -5,6 +5,8 @@ import AuthContext from '../context/auth-context';
 import Button from '../Layout/Button';
 import Card from '../Layout/Card';
 import classes from './Home.module.css';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase/firebase_config';
 
 const HomePage = () => {
   const {
@@ -14,10 +16,12 @@ const HomePage = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    if (!userId) {
-      navigate('');
-    };
-  }, [userId]);
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate('/');
+      } ;
+    });
+  }, []);
 
   // Handler Functions
   const signOutHandler = () => {
