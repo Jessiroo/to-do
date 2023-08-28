@@ -1,16 +1,25 @@
 import { useState } from "react";
 import AuthContext from "./auth-context";
 import { auth } from "../firebase/firebase_config";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 // AuthProvider
 const AuthProvider = (props) => {
   const [userId, setUserId] = useState(null);
 
-  // Dispatch Handlers
+  // Handlers
   const updateUserHandler = (email, password) => {
     const user = signInWithEmailAndPassword(auth, email, password).catch(err => alert(err.message));
     setUserId(user.uid);
+  };
+
+  const createUserHandler = (email, password, verifyPassword) => {
+    if (password === verifyPassword) {
+      const user = createUserWithEmailAndPassword(auth, email, password).catch(err => alert(err.message));
+      setUserId(user.uid);
+    } else {
+      alert('Passwords must match!')
+    }
   };
 
   const clearUserHandler = () => {
@@ -22,6 +31,7 @@ const AuthProvider = (props) => {
   const authContext = {
     userId,
     updateUser: updateUserHandler,
+    createUser: createUserHandler,
     clearUser: clearUserHandler,
   };
 

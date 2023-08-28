@@ -6,9 +6,10 @@ import classes from './Login.module.css';
 import AuthContext from '../context/auth-context';
 
 const Login = () => {
-  const { updateUser } = useContext(AuthContext);
+  const { updateUser, createUser } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [verifyPassword, setVerifyPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
 
   // Handler Functions
@@ -20,6 +21,10 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
+  const verifyPasswordHandler = (event) => {
+    setVerifyPassword(event.target.value);
+  };
+
   const signInHandler = () => {
     updateUser(email, password);
   };
@@ -28,27 +33,58 @@ const Login = () => {
     setIsRegistering(true);
   };
 
-  // Content
+  const registerHandler = () => {
+    createUser(email, password, verifyPassword);
+  };
+
+  const cancelRegisterHandler = () => {
+    setIsRegistering(false);
+  };
+
+  // Default Content
   let content = (
     <>
-      <input onChange={emailChangeHandler} type="email" />
-      <input onChange={passwordChangeHandler} type="password" />
+      <input 
+        onChange={emailChangeHandler} 
+        type="email" 
+        placeholder="Email"
+      />
+      <input 
+        onChange={passwordChangeHandler} 
+        type="password" 
+        placeholder="Password"
+      />
       <Button onClick={signInHandler}>Submit</Button>
       <Button onClick={createAccountHandler}>Create an Account</Button>
     </>
   );
 
+  // Content if Registering
   if (isRegistering) {
     content = (
       <>
-        <input onChange={emailChangeHandler} type="email" />
-        <input onChange={passwordChangeHandler} type="password" />
-        {/* <Button onClick={signInHandler}>Register</Button> */}
+        <input 
+          onChange={emailChangeHandler} 
+          type="email" 
+          placeholder="Email" 
+        />
+        <input 
+          onChange={passwordChangeHandler} 
+          type="password" 
+          placeholder="Password" 
+        />
+        <input 
+          onChange={verifyPasswordHandler} 
+          type="password" 
+          placeholder="Confirm Password" 
+        />
+        <Button onClick={registerHandler}>Register</Button>
+        <Button onClick={cancelRegisterHandler}>Cancel</Button>
       </>
     );
   };
 
-  // component Return
+  // Component Return
   return (
     <Card>
       {content}
