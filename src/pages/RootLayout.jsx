@@ -4,7 +4,7 @@ import classes from './RootLayout.module.css';
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className={classes.main}>
       <Outlet />
     </div>
   );

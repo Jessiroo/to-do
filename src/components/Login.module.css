@@ -1,0 +1,26 @@
+.signInCard {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 50%;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .signInCard {
+    width: 80%;
+  }
+}

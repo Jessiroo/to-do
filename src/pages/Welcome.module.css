@@ -1,0 +1,21 @@
+.mainDivider {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 90vh;
+  align-items: center;
+}
+
+.divider {
+  width: 50%;
+}
+
+@media (max-width: 600px) {
+  .divider {
+    width: 100%;
+  }
+
+  .divider:nth-of-type(2) {
+    display: none;
+  }
+}

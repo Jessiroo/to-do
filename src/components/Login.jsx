@@ -1,16 +1,14 @@
-import { useContext, useState } from 'react';
+import { Fragment, useContext, useState } from 'react';
 
 import Card from '../Layout/Card';
 import Button from '../Layout/Button';
-import classes from './Login.module.css';
 import AuthContext from '../context/auth-context';
-import { set } from 'firebase/database';
+import classes from './Login.module.css';
 
 const Login = () => {
   const { updateUser, createUser } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [verifyPassword, setVerifyPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     email: "",
@@ -26,10 +24,6 @@ const Login = () => {
   const passwordChangeHandler = (event) => {
     setPassword(event.target.value);
   };
-
-  // const verifyPasswordHandler = (event) => {
-  //   setVerifyPassword(event.target.value);
-  // };
 
   const signInHandler = () => {
     updateUser(email, password);
@@ -74,55 +68,81 @@ const Login = () => {
 
   // Default Content
   let content = (
-    <>
-      <input 
-        onChange={emailChangeHandler} 
-        type="email" 
-        placeholder="Email"
-        value={email}
-      />
-      <input 
-        onChange={passwordChangeHandler} 
-        type="password" 
-        placeholder="Password"
-        value={password}
-      />
-      <Button onClick={signInHandler}>Submit</Button>
-      <Button onClick={createAccountHandler}>Create an Account</Button>
-    </>
+    <Fragment>
+      <h1>Sign In</h1>
+      <div className={classes.input}>
+        <label for="email">Email:</label>
+        <input 
+          id="email"
+          onChange={emailChangeHandler} 
+          type="email" 
+          placeholder="Email"
+          value={email}
+        />
+      </div>
+      <div className={classes.input}>
+        <label for="password">Password:</label>
+        <input 
+          id="password"
+          onChange={passwordChangeHandler} 
+          type="password" 
+          placeholder="Password"
+          value={password}
+        />
+      </div>
+      <div className={classes.buttons}>
+        <Button onClick={signInHandler}>Submit</Button>
+        <Button onClick={createAccountHandler}>Create an Account</Button>
+      </div>
+    </Fragment>
   );
 
   // Content if Registering
   if (isRegistering) {
     content = (
-      <>
-        <input 
-          onChange={registerEmailChangeHandler} 
-          type="email" 
-          placeholder="Email" 
-          value={registerInfo.email}
-        />
-        <input 
-          onChange={registerPasswordChangeHandler} 
-          type="password" 
-          placeholder="Password" 
-          value={registerInfo.password}
-        />
-        <input 
-          onChange={registerVerifyPasswordHandler} 
-          type="password" 
-          placeholder="Confirm Password" 
-          value={registerInfo.verifyPassword}
-        />
-        <Button onClick={registerUserHandler}>Register</Button>
-        <Button onClick={cancelRegisterHandler}>Cancel</Button>
-      </>
+      <Fragment>
+        <h1>Create an Account</h1>
+        <div className={classes.input}>
+          <label for="createEmail">Email:</label>
+          <input 
+            id="createEmail"
+            onChange={registerEmailChangeHandler} 
+            type="email" 
+            placeholder="Email" 
+            value={registerInfo.email}
+          />
+        </div>
+        <div className={classes.input}>
+          <label for="createPassword">Password:</label>
+          <input 
+            id="createPassword"
+            onChange={registerPasswordChangeHandler} 
+            type="password" 
+            placeholder="Password" 
+            value={registerInfo.password}
+          />
+        </div>
+        <div className={classes.input}>
+          <label for="verifyPassword">Verify Password:</label>
+          <input 
+            id="verifyPassword"
+            onChange={registerVerifyPasswordHandler} 
+            type="password" 
+            placeholder="Confirm Password" 
+            value={registerInfo.verifyPassword}
+          />
+        </div>
+        <div className={classes.buttons}>
+          <Button onClick={registerUserHandler}>Register</Button>
+          <Button onClick={cancelRegisterHandler}>Cancel</Button>
+        </div>
+      </Fragment>
     );
   };
 
   // Component Return
   return (
-    <Card>
+    <Card className={classes.signInCard}>
       {content}
     </Card>
   );
