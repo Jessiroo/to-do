@@ -71,7 +71,7 @@ const Login = () => {
     <Fragment>
       <h1>Sign In</h1>
       <div className={classes.input}>
-        <label for="email">Email:</label>
+        <label htmlFor="email">Email:</label>
         <input 
           id="email"
           onChange={emailChangeHandler} 
@@ -81,7 +81,7 @@ const Login = () => {
         />
       </div>
       <div className={classes.input}>
-        <label for="password">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input 
           id="password"
           onChange={passwordChangeHandler} 
@@ -103,7 +103,7 @@ const Login = () => {
       <Fragment>
         <h1>Create an Account</h1>
         <div className={classes.input}>
-          <label for="createEmail">Email:</label>
+          <label htmlFor="createEmail">Email:</label>
           <input 
             id="createEmail"
             onChange={registerEmailChangeHandler} 
@@ -113,7 +113,7 @@ const Login = () => {
           />
         </div>
         <div className={classes.input}>
-          <label for="createPassword">Password:</label>
+          <label htmlFor="createPassword">Password:</label>
           <input 
             id="createPassword"
             onChange={registerPasswordChangeHandler} 
@@ -123,7 +123,7 @@ const Login = () => {
           />
         </div>
         <div className={classes.input}>
-          <label for="verifyPassword">Verify Password:</label>
+          <label htmlFor="verifyPassword">Verify Password:</label>
           <input 
             id="verifyPassword"
             onChange={registerVerifyPasswordHandler} 

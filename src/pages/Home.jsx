@@ -7,10 +7,11 @@ import Card from '../Layout/Card';
 import classes from './Home.module.css';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/firebase_config';
+import AddToDo from '../components/AddToDo';
 
 const HomePage = () => {
   const {
-    userId,
+    getUserId,
     clearUser,
   } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -19,7 +20,10 @@ const HomePage = () => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         navigate('/');
-      } ;
+      } else {
+        const userId = user.uid;
+        console.log(userId);
+      }
     });
   }, []);
 
@@ -30,10 +34,15 @@ const HomePage = () => {
 
   // Page Return
   return (
-    <Card>
-      <h1>This is the home page!</h1>
-      <Button onClick={signOutHandler} >Logout</Button>
-    </Card>
+    <div className={classes.mainDivider}>
+      <div className={classes.divider}>
+        <AddToDo />
+      </div>
+      <div className={classes.divider}>
+        <h1>Stuff here</h1>
+        <Button onClick={signOutHandler}>Logout</Button>
+      </div>
+    </div>
   );
 };
 
