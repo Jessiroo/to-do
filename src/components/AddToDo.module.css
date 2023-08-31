@@ -1,0 +1,12 @@
+.addCard {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 50%;
+}
+
+@media (max-width: 800px) {
+  .addCard {
+    width: 80%;
+  }
+}

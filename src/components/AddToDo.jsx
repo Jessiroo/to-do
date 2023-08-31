@@ -6,7 +6,7 @@ import classes from './AddToDo.module.css';
 import { auth, db } from "../firebase/firebase_config";
 import { set, ref } from "firebase/database";
 
-const AddToDo = () => {
+const AddToDo = (props) => {
   const [newToDo, setNewToDo] = useState('');
 
   // Handler functions
@@ -16,6 +16,8 @@ const AddToDo = () => {
 
   const addItemHandler = () => {
     // const uid = uid();
+    const userId = auth.currentUser.uid;
+    console.log(userId);
     // set(ref(db, `/${auth.currentUser.uid}/${uid}`), {
     //   toDo: newToDo,
     //   uid,
@@ -24,7 +26,7 @@ const AddToDo = () => {
 
   // Component Return
   return (
-    <Card>
+    <Card className={classes.addCard}>
       <h1>Add New Item:</h1>
       <input 
         onChange={newToDoChangeHandler}

@@ -1,19 +1,16 @@
-import { useContext, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import AuthContext from '../context/auth-context';
 import Button from '../Layout/Button';
-import Card from '../Layout/Card';
 import classes from './Home.module.css';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/firebase_config';
 import AddToDo from '../components/AddToDo';
+import useAuth from '../hooks/use-auth';
 
 const HomePage = () => {
-  const {
-    getUserId,
-    clearUser,
-  } = useContext(AuthContext);
+  // const [userAuthId, setUserAuthId] = useState(null);
+  const { clearUser } = useAuth();
   const navigate = useNavigate();
   
   useEffect(() => {
@@ -21,8 +18,8 @@ const HomePage = () => {
       if (!user) {
         navigate('/');
       } else {
-        const userId = user.uid;
-        console.log(userId);
+        // const userId = user.uid;
+        // setUserAuthId(userId);
       }
     });
   }, []);

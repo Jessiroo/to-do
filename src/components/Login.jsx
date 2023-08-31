@@ -1,12 +1,15 @@
-import { Fragment, useContext, useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import Card from '../Layout/Card';
 import Button from '../Layout/Button';
-import AuthContext from '../context/auth-context';
 import classes from './Login.module.css';
+import useAuth from '../hooks/use-auth';
 
 const Login = () => {
-  const { updateUser, createUser } = useContext(AuthContext);
+  const {
+    signInUser,
+    createUser,
+  } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
@@ -26,7 +29,7 @@ const Login = () => {
   };
 
   const signInHandler = () => {
-    updateUser(email, password);
+    signInUser(email, password);
   };
 
   // Create Account Handlers
