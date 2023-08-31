@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from './pages/RootLayout';
 import WelcomePage from './pages/Welcome';
 import HomePage from './pages/Home';
+import ListProvider from "./context/ListProvider";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <ListProvider>
+      <RouterProvider router={router} />
+    </ListProvider>
   );
 }
 
