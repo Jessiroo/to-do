@@ -1,10 +1,10 @@
-import { ref, set } from "firebase/database";
+import { ref, update } from "firebase/database";
 import { auth, db } from "../firebase/firebase_config";
 
 const useSaveList = () => {
   const saveList = (list) => {
     const userId = auth.currentUser.uid;
-    set(ref(db, `/${userId}`), {
+    update(ref(db, `/${userId}`), {
       toDoList: list,
     });
   };

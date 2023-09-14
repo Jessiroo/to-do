@@ -4,17 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../Layout/Button';
 import classes from './Home.module.css';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/firebase_config';
+import { auth, db } from '../firebase/firebase_config';
 import AddToDo from '../components/AddToDo';
 import useAuth from '../hooks/use-auth';
 import ListContext from '../context/list-context';
 import useSaveList from '../hooks/use-save-list';
+import TaskCard from '../components/TaskCard';
+import { onValue, ref } from 'firebase/database';
 
 const HomePage = () => {
-  // const [userAuthId, setUserAuthId] = useState(null);
   const [changesPresent, setChangesPresent] = useState(false);
   const saveList = useSaveList();
-  const { list } = useContext(ListContext);
+  const { list, setList } = useContext(ListContext);
   const { clearUser } = useAuth();
   const navigate = useNavigate();
   
@@ -24,13 +25,14 @@ const HomePage = () => {
       if (!user) {
         navigate('/');
       } else {
-        // const userId = user.uid;
-        // setUserAuthId(userId);
+        onValue(ref(db, `/${auth.currentUser.uid}/toDoList`), snapshot => {
+          setList(snapshot.val());
+        });
       }
     });
   }, []);
 
-  // Save List if Changes and No Recent Activity
+  // Save List if Changes Present and No Recent Activity
   useEffect(() => {
     console.log(list, 'list');
     console.log(changesPresent, 'changesPresent');
@@ -66,6 +68,7 @@ const HomePage = () => {
       </div>
       <div className={classes.divider}>
         <h1>Stuff here</h1>
+        <TaskCard />
         <Button onClick={signOutHandler}>Logout</Button>
       </div>
     </div>

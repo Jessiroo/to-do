@@ -5,8 +5,13 @@ import { uid } from "uid";
 const ListProvider = (props) => {
   const [list, setList] = useState([]);
 
+  // Set List from Database
+  const setListHandler = (array) => {
+    setList(array);
+  };
+
   // Add New Item to List
-  const addNewListItem = (text, priority) => {
+  const addNewListItemHandler = (text, priority) => {
     const listItemId = uid();
     const newItem = {
       id: listItemId,
@@ -19,10 +24,20 @@ const ListProvider = (props) => {
     setList(newList);
   };
 
+  // Remove Item From List
+  const removeListItemHandler = (id) => {
+    const index = list.findIndex(obj => obj.id === id);
+    const newList = [...list];
+    newList.splice(index, 1);
+    setList(newList);
+  };
+
   // Provided Context
   const listContext = {
     list,
-    addNewListItem,
+    setList: setListHandler,
+    addNewListItem: addNewListItemHandler,
+    removeListItem: removeListItemHandler,
   };
 
   // Context Provider Return
