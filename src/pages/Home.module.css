@@ -18,9 +18,7 @@
   .mainDivider {
     flex-direction: column;
   }
-}
 
-@media (max-width: 600px) {
   .divider {
     width: 100%;
   }

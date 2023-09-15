@@ -1,45 +1,45 @@
 import { useContext, useState } from "react";
 
-import Card from "../Layout/Card";
+import Modal from "../Layout/Modal";
+import classes from './EditModal.module.css';
 import Button from "../Layout/Button";
 import ListContext from "../context/list-context";
-import classes from './AddToDo.module.css';
 
-const AddToDo = (props) => {
-  const { addNewListItem } = useContext(ListContext);
-  const [newToDo, setNewToDo] = useState('');
-  const [priority, setPriority] = useState('low');
+const EditModal = (props) => {
+  const [text, setText] = useState(props.text);
+  const [priority, setPriority] = useState(props.priority);
+  const { updateListItem } = useContext(ListContext);
 
-  // Handler functions
-  const newToDoChangeHandler = (event) => {
-    setNewToDo(event.target.value);
-  }; 
-
-  const setPriorityHandler = (event) => {
+  // Value Handlers
+  const updateTextHandler = (event) => {
+    setText(event.target.value);
+  };
+  const updatePriorityHandler = (event) => {
     setPriority(event.target.value);
   };
 
-  const addItemHandler = (event) => {
+  // Click Handlers
+  const updateItemHandler = (event) => {
     event.preventDefault();
-    if (newToDo.trim() === '') {
-      return;
-    };
-    addNewListItem(newToDo, priority);
-    setNewToDo('');
-    props.changesPresent();
+    updateListItem(props.id, text, priority);
+    props.onClose();
+    props.onUpdate();
+  };
+  const cancelEditHandler = (event) => {
+    event.preventDefault();
+    props.onClose();
   };
 
-  // Component Return
   return (
-    <Card className={classes.addCard}>
-      <h1>Add New Task:</h1>
+    <Modal onClose={props.onClose}>
+      <h1>Edit:</h1>
       <form>
         <div>
-          <label htmlFor="toDo">New Item:</label>
+          <label htmlFor="toDo">Text:</label>
           <input 
             id="toDo"
-            onChange={newToDoChangeHandler}
-            value={newToDo}
+            onChange={updateTextHandler}
+            value={text}
             type="input"
           />
         </div>
@@ -52,7 +52,7 @@ const AddToDo = (props) => {
                 id="low"
                 name="priority"
                 value="Low"
-                onChange={setPriorityHandler}
+                onChange={updatePriorityHandler}
               />
               <label htmlFor="low">Low</label>
             </div>
@@ -62,7 +62,7 @@ const AddToDo = (props) => {
                 id="med"
                 name="priority"
                 value="Med"
-                onChange={setPriorityHandler}
+                onChange={updatePriorityHandler}
               />
               <label htmlFor="med">Medium</label>
             </div>
@@ -72,16 +72,19 @@ const AddToDo = (props) => {
                 id="high"
                 name="priority"
                 value="High"
-                onChange={setPriorityHandler}
+                onChange={updatePriorityHandler}
               />
               <label htmlFor="high">High</label>
             </div>
           </div>
         </fieldset>
-        <Button onClick={addItemHandler}>Add Item</Button>
+        <div className={classes.buttons}>
+          <Button onClick={updateItemHandler}>Save</Button>
+          <Button onClick={cancelEditHandler}>Cancel</Button>
+        </div>
       </form>
-    </Card>
+    </Modal>
   );
 };
 
-export default AddToDo;
+export default EditModal;

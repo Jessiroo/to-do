@@ -1,11 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import Button from '../Layout/Button';
 import Card from '../Layout/Card';
+import EditModal from './EditModal';
 import classes from './TaskItem.module.css';
 import ListContext from '../context/list-context';
 
 const TaskItem = (props) => {
+  const [openEdit, setOpenEdit] = useState(false);
   const { 
     removeListItem,
     moveItemUp,
@@ -28,18 +30,42 @@ const TaskItem = (props) => {
     props.onUpdate();
   };
 
+  const openEditHandler = () => {
+    setOpenEdit(true);
+  };
+
+  const closeEditHandler = () => {
+    setOpenEdit(false);
+  };
+
   // Component Return
   return (
     <Card className={classes.taskItem}>
-      <div>
-        <p>{props.text}</p>
-        <p className={classes.priority}><i>Priority: {props.priority}</i></p>
+      {openEdit && 
+        <EditModal 
+          id={props.id}
+          text={props.text}
+          priority={props.priority}
+          onClose={closeEditHandler} 
+          onUpdate={props.onUpdate}
+        />
+      }
+      <div className={classes.left}>
+        <div className={classes.button}>
+          <div>
+            <Button onClick={moveUpHandler}>&#8593;</Button>
+            <Button onClick={moveDownHandler}>&#8595;</Button>
+          </div>
+        </div>
+        <div>
+          <p>{props.text}</p>
+          <p className={classes.priority}><i>Priority: {props.priority}</i></p>
+        </div>
       </div>
       <div className={classes.button}>
         <div>
-          <Button onClick={moveUpHandler}>&#8593;</Button>
           <Button onClick={removeTaskItemHandler}>X</Button>
-          <Button onClick={moveDownHandler}>&#8595;</Button>
+          <Button onClick={openEditHandler}>&#x270E;</Button>
         </div>
       </div>
     </Card>

@@ -5,6 +5,7 @@ const ListContext = React.createContext({
   setList: (array) => {},
   addNewListItem: (text, priority) => {},
   removeListItem: (id) => {},
+  updateListItem: (id, text, priority) => {},
   moveUpList: (id) => {},
   moveDownList: (id) => {},
 });

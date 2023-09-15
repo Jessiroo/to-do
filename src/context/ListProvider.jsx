@@ -32,6 +32,15 @@ const ListProvider = (props) => {
     setList(newList);
   };
 
+  // Update Item on List
+  const updateListItemHandler = (id, text, priority) => {
+    const index = list.findIndex(obj => obj.id === id);
+    const newList = [...list];
+    newList[index].text = text;
+    newList[index].priority = priority;
+    setList(newList);
+  };
+
   // Move Item Up List
   const moveItemUpListHandler = (id) => {
     const index = list.findIndex(obj => obj.id === id);
@@ -58,6 +67,7 @@ const ListProvider = (props) => {
     setList: setListHandler,
     addNewListItem: addNewListItemHandler,
     removeListItem: removeListItemHandler,
+    updateListItem: updateListItemHandler,
     moveItemUp: moveItemUpListHandler,
     moveItemDown: moveItemDownListHandler,
   };

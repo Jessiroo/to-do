@@ -29,6 +29,7 @@ const SettingsPage = () => {
       <div className={classes.main}>
         <Card className={classes.settings}>
           <h1>Settings:</h1>
+          <p>More customization options coming soon!</p>
         </Card>
       </div>
     </Fragment>
