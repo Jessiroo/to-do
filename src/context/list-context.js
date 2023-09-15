@@ -5,6 +5,8 @@ const ListContext = React.createContext({
   setList: (array) => {},
   addNewListItem: (text, priority) => {},
   removeListItem: (id) => {},
+  moveUpList: (id) => {},
+  moveDownList: (id) => {},
 });
 
 export default ListContext;

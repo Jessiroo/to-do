@@ -32,12 +32,34 @@ const ListProvider = (props) => {
     setList(newList);
   };
 
+  // Move Item Up List
+  const moveItemUpListHandler = (id) => {
+    const index = list.findIndex(obj => obj.id === id);
+    const newList = [...list];
+    const movedItem = newList[index];
+    newList.splice(index, 1);
+    newList.splice(index - 1, 0, movedItem);
+    setList(newList);
+  };
+
+  // Move Item Down List
+  const moveItemDownListHandler = (id) => {
+    const index = list.findIndex(obj => obj.id === id);
+    const newList = [...list];
+    const movedItem = newList[index];
+    newList.splice(index, 1);
+    newList.splice(index + 1, 0, movedItem);
+    setList(newList);
+  };
+
   // Provided Context
   const listContext = {
     list,
     setList: setListHandler,
     addNewListItem: addNewListItemHandler,
     removeListItem: removeListItemHandler,
+    moveItemUp: moveItemUpListHandler,
+    moveItemDown: moveItemDownListHandler,
   };
 
   // Context Provider Return

@@ -32,8 +32,8 @@ const AddToDo = (props) => {
   // Component Return
   return (
     <Card className={classes.addCard}>
+      <h1>Add New Item:</h1>
       <form>
-        <h1>Add New Item:</h1>
         <div>
           <label htmlFor="toDo">New Item:</label>
           <input 

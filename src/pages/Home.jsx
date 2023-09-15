@@ -24,7 +24,7 @@ const HomePage = () => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         navigate('/');
-      } else {
+      } else {    
         onValue(ref(db, `/${auth.currentUser.uid}/toDoList`), snapshot => {
           setList(snapshot.val());
         });
@@ -46,7 +46,7 @@ const HomePage = () => {
         clearTimeout(saveTimeout);
       };
     };
-  }, [list, changesPresent])
+  }, [list, changesPresent]);
 
   // Handler Functions
   const signOutHandler = async () => {
@@ -69,7 +69,7 @@ const HomePage = () => {
           <AddToDo changesPresent={changesPresentHandler}/>
         </div>
         <div className={classes.divider}>
-          <TaskCard />
+          <TaskCard onUpdate={changesPresentHandler}/>
         </div>
       </div>
     </Fragment>

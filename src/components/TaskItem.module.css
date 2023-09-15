@@ -4,15 +4,41 @@
   justify-content: space-between;
   margin-bottom: 0.2rem;
   padding-left: 0.7rem;
-  padding-right: 0.7rem;
+  padding-right: 0.1rem;
 }
 
 .taskItem:last-child {
   margin-bottom: 0;
 }
 
+.taskItem p {
+  margin: 0.5rem;
+}
+
+.priority {
+  font-size: 0.8rem;
+}
+
 .button {
   display: flex;
   align-items: center;
-  margin-left: 1rem;
+}
+
+.button div {
+  display: flex;
+  flex-direction: column;
+}
+
+.button button {
+  padding: 0.1rem 0.3rem 0.1rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+}
+
+.button button:first-child {
+  margin-top: 0.5rem;
+}
+
+.button button:last-child {
+  margin-bottom: 0.5rem;
 }

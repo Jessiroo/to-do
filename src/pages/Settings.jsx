@@ -2,9 +2,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase/firebase_config";
 import { useNavigate } from "react-router-dom";
 import { onValue, ref } from "firebase/database";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 import Navbar from "../Layout/Navbar";
+import Card from '../Layout/Card';
+import classes from './Settings.module.css';
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -22,10 +24,14 @@ const SettingsPage = () => {
   }, []);
 
   return (
-    <div>
+    <Fragment>
       <Navbar />
-      <h1>Settings</h1>
-    </div>
+      <div className={classes.main}>
+        <Card className={classes.settings}>
+          <h1>Settings:</h1>
+        </Card>
+      </div>
+    </Fragment>
   );
 };
 

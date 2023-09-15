@@ -5,7 +5,7 @@ import ListContext from '../context/list-context';
 import TaskItem from './TaskItem';
 import classes from './TaskCard.module.css';
 
-const TaskCard = () => {
+const TaskCard = (props) => {
   const { list } = useContext(ListContext);
 
   let content = (
@@ -19,6 +19,7 @@ const TaskCard = () => {
         key={task.id}
         text={task.text}
         priority={task.priority}
+        onUpdate={props.onUpdate}
       />
     ));
   }
