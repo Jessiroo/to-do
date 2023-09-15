@@ -9,10 +9,17 @@
   font-size: 1.2rem;
   font-weight: 500;
   margin: 0 1rem 0;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
 .navbar a:hover {
   text-decoration: underline;
+}
+
+/* Large Screens */
+@media (min-width: 2000px) {
+  .navbar {
+    justify-content: center;
+  }
 }

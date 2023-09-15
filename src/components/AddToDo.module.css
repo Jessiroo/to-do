@@ -48,3 +48,11 @@
     margin: calc(3rem + 20px) 1rem 1rem;
   }
 }
+
+/* Large Screens */
+@media (min-width: 2000px) {
+  .addCard {
+    margin-top: 10vh;
+    margin-bottom: 1rem;
+  }
+}
