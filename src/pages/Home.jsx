@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../Layout/Button';
 import classes from './Home.module.css';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../firebase/firebase_config';
@@ -11,6 +10,7 @@ import ListContext from '../context/list-context';
 import useSaveList from '../hooks/use-save-list';
 import TaskCard from '../components/TaskCard';
 import { onValue, ref } from 'firebase/database';
+import Navbar from '../Layout/Navbar';
 
 const HomePage = () => {
   const [changesPresent, setChangesPresent] = useState(false);
@@ -62,16 +62,17 @@ const HomePage = () => {
 
   // Page Return
   return (
-    <div className={classes.mainDivider}>
-      <div className={classes.divider}>
-        <AddToDo changesPresent={changesPresentHandler}/>
+    <Fragment>
+      <Navbar onSignOut={signOutHandler}/>
+      <div className={classes.mainDivider}>
+        <div className={classes.divider}>
+          <AddToDo changesPresent={changesPresentHandler}/>
+        </div>
+        <div className={classes.divider}>
+          <TaskCard />
+        </div>
       </div>
-      <div className={classes.divider}>
-        <h1>Stuff here</h1>
-        <TaskCard />
-        <Button onClick={signOutHandler}>Logout</Button>
-      </div>
-    </div>
+    </Fragment>
   );
 };
 

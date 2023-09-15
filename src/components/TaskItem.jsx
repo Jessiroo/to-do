@@ -13,10 +13,14 @@ const TaskItem = (props) => {
   };
 
   return (
-    <Card>
-      <p>{props.text}</p>
-      <h3>Priority: {props.priority}</h3>
-      <Button onClick={removeTaskItemHandler}>X</Button>
+    <Card className={classes.taskItem}>
+      <div>
+        <p>{props.text}</p>
+        <p>Priority: {props.priority}</p>
+      </div>
+      <div className={classes.button}>
+        <Button onClick={removeTaskItemHandler}>X</Button>
+      </div>
     </Card>
   );
 };

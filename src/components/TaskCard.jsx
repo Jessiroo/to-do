@@ -25,6 +25,7 @@ const TaskCard = () => {
 
   return (
     <Card className={classes.taskCard}>
+      <h1>Tasks:</h1>
       {content}
     </Card>
   );

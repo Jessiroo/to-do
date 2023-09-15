@@ -1,0 +1,18 @@
+.taskItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+}
+
+.taskItem:last-child {
+  margin-bottom: 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}

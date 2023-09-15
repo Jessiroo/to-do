@@ -1,0 +1,18 @@
+.navbar {
+  display: flex;
+  justify-content: right;
+  height: 40px;
+  align-items: center;
+}
+
+.navbar a {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 1rem 0;
+  color: black;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
