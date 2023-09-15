@@ -34,8 +34,8 @@ const EditModal = (props) => {
     <Modal onClose={props.onClose}>
       <h1>Edit:</h1>
       <form>
-        <div>
-          <label htmlFor="toDo">Text:</label>
+        <div className={classes.text}>
+          <label htmlFor="toDo"><h3>Text:</h3></label>
           <input 
             id="toDo"
             onChange={updateTextHandler}
@@ -43,8 +43,8 @@ const EditModal = (props) => {
             type="input"
           />
         </div>
-        <fieldset>
-          <h2>Priority:</h2>
+        <fieldset className={classes.radio}>
+          <h3>Priority:</h3>
           <div className={classes.inputs}>
             <div>
               <input 
@@ -79,8 +79,8 @@ const EditModal = (props) => {
           </div>
         </fieldset>
         <div className={classes.buttons}>
-          <Button onClick={updateItemHandler}>Save</Button>
           <Button onClick={cancelEditHandler}>Cancel</Button>
+          <Button onClick={updateItemHandler}>Save</Button>
         </div>
       </form>
     </Modal>

@@ -34,8 +34,8 @@ const AddToDo = (props) => {
     <Card className={classes.addCard}>
       <h1>Add New Task:</h1>
       <form>
-        <div>
-          <label htmlFor="toDo">New Item:</label>
+        <div className={classes.text}>
+          <label htmlFor="toDo"><h3>New Item:</h3></label>
           <input 
             id="toDo"
             onChange={newToDoChangeHandler}
@@ -43,8 +43,8 @@ const AddToDo = (props) => {
             type="input"
           />
         </div>
-        <fieldset>
-          <h2>Priority:</h2>
+        <fieldset className={classes.radio}>
+          <h3>Priority:</h3>
           <div className={classes.inputs}>
             <div>
               <input 
@@ -78,7 +78,9 @@ const AddToDo = (props) => {
             </div>
           </div>
         </fieldset>
-        <Button onClick={addItemHandler}>Add Item</Button>
+        <div className={classes.button}>
+          <Button onClick={addItemHandler}>Add Item</Button>
+        </div>
       </form>
     </Card>
   );

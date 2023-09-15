@@ -1,4 +1,33 @@
+.text h3 {
+  margin: 0;
+}
+
+.text input {
+  width: calc(100% - 0.5rem);
+  border-radius: 5px;
+}
+
+.radio {
+  border: none;
+  margin-left: -0.5rem;
+}
+
+.radio h3 {
+  margin: 0.5rem 0 0 -0.2rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: -0.5rem;
+}
+
 .buttons {
   display: flex;
   justify-content: right;
+}
+
+.buttons button {
+  margin-right: 0;
 }
