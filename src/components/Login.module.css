@@ -19,6 +19,26 @@
   margin-top: 0.5rem;
 }
 
+.buttons button:last-child {
+  margin-right: 0;
+}
+
+.signInOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.signInOptions p {
+  font-size: 0.9rem;
+  text-decoration: underline;
+  margin-top: 0.3rem;
+}
+
+.signInOptions p:hover {
+  font-weight: 600;
+}
+
 @media (max-width: 800px) {
   .signInCard {
     width: 80%;

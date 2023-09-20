@@ -1,4 +1,6 @@
 import { Fragment, useState } from 'react';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth } from '../firebase/firebase_config';
 
 import Card from '../Layout/Card';
 import Button from '../Layout/Button';
@@ -13,6 +15,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
+  const [forgottenPassword, setForgottenPassword] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     email: "",
     password: "",
@@ -69,6 +72,25 @@ const Login = () => {
     setIsRegistering(false);
   };
 
+  // Forgotten Password Handlers 
+  const forgottenPasswordHandler = () => {
+    setForgottenPassword(true);
+  };
+
+  const resetPasswordHandler = () => {
+    sendPasswordResetEmail(auth, email).then(() => {
+      // Alert component that email sent
+      setForgottenPassword(false);
+    }).catch((err) => {
+      // Alert component there was an error
+      alert(err.message);
+    });
+  };
+
+  const cancelForgottenPasswordHandler = () => {
+    setForgottenPassword(false);
+  };
+
   // Default Content
   let content = (
     <Fragment>
@@ -93,9 +115,14 @@ const Login = () => {
           value={password}
         />
       </div>
-      <div className={classes.buttons}>
-        <Button onClick={signInHandler}>Submit</Button>
-        <Button onClick={createAccountHandler}>Create an Account</Button>
+      <div className={classes.signInOptions}>
+        <div>
+          <p onClick={forgottenPasswordHandler}>Forgot Password</p>
+          <p onClick={createAccountHandler}>Create an Account</p>
+        </div>
+        <div className={classes.buttons}>
+          <Button onClick={signInHandler}>Submit</Button>
+        </div>
       </div>
     </Fragment>
   );
@@ -136,8 +163,32 @@ const Login = () => {
           />
         </div>
         <div className={classes.buttons}>
-          <Button onClick={registerUserHandler}>Register</Button>
           <Button onClick={cancelRegisterHandler}>Cancel</Button>
+          <Button onClick={registerUserHandler}>Register</Button>
+        </div>
+      </Fragment>
+    );
+  };
+
+  // Content if Forgotten Password:
+  if (forgottenPassword) {
+    content = (
+      <Fragment>
+        <h1>Reset Password:</h1>
+        <p></p>
+        <div className={classes.input}>
+          <label htmlFor="email">Email:</label>
+          <input 
+            id="email"
+            onChange={emailChangeHandler} 
+            type="email" 
+            placeholder="Email"
+            value={email}
+          />
+        </div>
+        <div className={classes.buttons}>
+          <Button onClick={cancelForgottenPasswordHandler}>Cancel</Button>
+          <Button onClick={resetPasswordHandler}>Reset Password</Button>
         </div>
       </Fragment>
     );

@@ -7,7 +7,9 @@ const ListProvider = (props) => {
 
   // Set List from Database
   const setListHandler = (array) => {
-    setList(array);
+    if (array) {
+      setList(array);
+    }
   };
 
   // Add New Item to List

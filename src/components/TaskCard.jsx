@@ -12,7 +12,7 @@ const TaskCard = (props) => {
     <p>No tasks found...</p>
   );
 
-  if (list.length > 0) {
+  if (list && list.length > 0) {
     content = list.map((task) => (
       <TaskItem 
         id={task.id}

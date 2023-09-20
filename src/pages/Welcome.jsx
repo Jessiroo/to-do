@@ -24,7 +24,7 @@ const WelcomePage = () => {
         <Login />
       </div>
       <div className={classes.divider}>
-        <h1>Stuff here</h1>
+        <h1>Sign in or create an account</h1>
       </div>
     </div>
   );
