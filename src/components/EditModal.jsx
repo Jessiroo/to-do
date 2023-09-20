@@ -61,7 +61,7 @@ const EditModal = (props) => {
                 type="radio"
                 id="med"
                 name="priority"
-                value="Med"
+                value="Medium"
                 onChange={updatePriorityHandler}
               />
               <label htmlFor="med">Medium</label>

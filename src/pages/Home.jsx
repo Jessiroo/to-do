@@ -25,7 +25,7 @@ const HomePage = () => {
       if (!user) {
         navigate('/');
       } else {    
-        onValue(ref(db, `/${auth.currentUser.uid}/toDoList`), snapshot => {
+        onValue(ref(db, `/users/${auth.currentUser.uid}/toDoList`), snapshot => {
           setList(snapshot.val());
         });
       }

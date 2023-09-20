@@ -61,7 +61,7 @@ const AddToDo = (props) => {
                 type="radio"
                 id="med"
                 name="priority"
-                value="Med"
+                value="Medium"
                 onChange={setPriorityHandler}
               />
               <label htmlFor="med">Medium</label>
