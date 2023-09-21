@@ -1,9 +1,10 @@
 .main {
   height: 100vh;
   background: linear-gradient(rgb(0, 170, 255), white);
+  /* background: red; */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }

@@ -1,17 +1,15 @@
 .mainDivider {
   display: flex;
   flex-direction: row;
-  width: 100%;
   height: calc(100vh - 40px);
   margin-top: -20px;
-
   align-items: center;
   margin-left: 10%;
   margin-right: 10%;
 }
 
 .divider {
-  width: 40%;
+  width: 50%;
   display: flex;
   align-items: center;
 }
