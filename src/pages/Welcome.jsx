@@ -21,8 +21,8 @@ const WelcomePage = () => {
   return (
     <div className={classes.mainDivider}>
       <div className={classes.welcome}>
-        <h2>Sign In or Create an Account</h2>
-        <h3>for your own</h3>
+        {/* <h2>Sign In or Create an Account</h2>
+        <h3>for your own</h3> */}
         <h1>Interactive Task List</h1>
       </div>
       <div className={classes.divider}>
