@@ -13,11 +13,15 @@ const Navbar = (props) => {
     }
   };
 
+  // Dynamic Colors
+  // TESTING, will make this dynamic based on preferences
+  const linkColor = { color: 'black' };
+
   return (
     <div className={classes.navbar}>
-      <Link to="/home">Home</Link>
-      <Link to="/settings">Settings</Link>
-      <Link to="/" onClick={signOutHandler}>Logout</Link>
+      <Link to="/home" style={linkColor}>Home</Link>
+      <Link to="/settings" style={linkColor}>Settings</Link>
+      <Link to="/" style={linkColor} onClick={signOutHandler}>Logout</Link>
     </div>
   );
 };
