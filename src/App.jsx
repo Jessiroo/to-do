@@ -5,6 +5,7 @@ import WelcomePage from './pages/Welcome';
 import HomePage from './pages/Home';
 import SettingsPage from './pages/Settings';
 import ListProvider from "./context/ListProvider";
+import ColorProvider from "./context/ColorProvider";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ListProvider>
-      <RouterProvider router={router} />
+      <ColorProvider>
+        <RouterProvider router={router} />
+      </ColorProvider>
     </ListProvider>
   );
 }
