@@ -3,7 +3,7 @@ import ColorContext from "./color-context";
 
 // Default color settings
 const defaultColors = {
-  backgroundGradientTop: '#00aaff',
+  backgroundGradientTop: '#00aaff', // #00aaff
   backgroundGradientBottom: '#ffffff',
   fontNav: '#ffffff',
   fontGeneral: '#000000',
