@@ -9,9 +9,11 @@ import ChangePassword from '../components/user/ChangePassword';
 import Card from '../Layout/Card';
 import classes from './Settings.module.css';
 import Button from "../Layout/Button";
+import ChangeColors from "../components/user/ChangeColors";
 
 const SettingsPage = () => {
-  const [changePassword, setChangePassword] = useState();
+  const [changeColors, setChangeColors] = useState(false);
+  const [changePassword, setChangePassword] = useState(false);
   const navigate = useNavigate();
 
   // Retrieve User Settings
@@ -28,10 +30,16 @@ const SettingsPage = () => {
   }, []);
 
   // Handlers
+  const openColorChangeHandler = () => {
+    setChangeColors(true);
+  };
+  const closeColorChangeHandler = () => {
+    setChangeColors(false);
+  };
+
   const openPasswordChangeHandler = () => {
     setChangePassword(true);
   };
-
   const closePasswordChangeHandler = () => {
     setChangePassword(false);
   };
@@ -42,7 +50,13 @@ const SettingsPage = () => {
       <div className={classes.main}>
         <Card className={classes.settings}>
           <h1>Settings:</h1>
-          <p>More customization options coming soon!</p>
+          <h2>Color Options:</h2>
+          {!changeColors &&
+            <div className={classes.button}>
+              <Button onClick={openColorChangeHandler}>Update Colors</Button>
+            </div>
+          }
+          {changeColors && <ChangeColors onClose={closeColorChangeHandler} />}
           <h2>Password:</h2>
           {!changePassword && 
             <div className={classes.button}>

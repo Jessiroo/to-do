@@ -5,6 +5,7 @@
   margin-bottom: 0.2rem;
   padding-left: 0.1rem;
   padding-right: 0.1rem;
+  background-color: white;
 }
 
 .taskItem:last-child {
