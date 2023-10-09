@@ -32,7 +32,7 @@ const ColorProvider = (props) => {
   const [colors, setColors] = useState(defaultColors);
 
   const updateColorsHandler = (newColors) => {
-    // function here for updating the colors
+    setColors(newColors);
   };
 
   const clearColorsHandler = () => {

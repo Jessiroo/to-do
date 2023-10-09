@@ -3,11 +3,15 @@ import { useContext, useState } from 'react';
 import classes from './ChangeColors.module.css';
 import Button from '../../Layout/Button';
 import ColorContext from '../../context/color-context';
+import useSaveColors from '../../hooks/use-save-colors';
 
 const ChangeColors = (props) => {
   const {
     colors,
+    updateColors,
   } = useContext(ColorContext);
+  const saveColors = useSaveColors();
+
   const [backgroundGradientTop, setBackgroundGradientTop] = useState(colors.backgroundGradientTop);
   const [backgroundGradientBottom, setBackgroundGradientBottom] = useState(colors.backgroundGradientBottom);
   const [fontNav, setFontNav] = useState(colors.fontNav);
@@ -74,9 +78,26 @@ const ChangeColors = (props) => {
   // Submit/Cancel Handlers
   const updateColorsHandler = (event) => {
     event.preventDefault();
-    // Compile color values
-    // Update Context
-    // Save to Database
+    const newColorSet = {
+      backgroundGradientTop,
+      backgroundGradientBottom,
+      fontNav,
+      fontGeneral,
+      fontLow,
+      fontMedium,
+      fontHigh,
+      cardGeneral,
+      cardLow,
+      cardMedium,
+      cardHigh,
+      cardModal,
+      button,
+      buttonFont,
+      buttonHover,
+    };
+    updateColors(newColorSet);
+    saveColors(newColorSet);
+    props.onClose();
   };
   const cancelUpdateColors = (event) => {
     event.preventDefault();
@@ -223,7 +244,7 @@ const ChangeColors = (props) => {
       </div>
       <div className={classes.button}>
         <Button onClick={cancelUpdateColors}>Cancel</Button>
-        <Button onClick={updateColorsHandler}>Update Colors</Button>
+        <Button onClick={updateColorsHandler}>Save Colors</Button>
       </div>
     </form>
   );

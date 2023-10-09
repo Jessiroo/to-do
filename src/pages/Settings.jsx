@@ -22,9 +22,9 @@ const SettingsPage = () => {
       if (!user) {
         navigate('/');
       } else {
-        onValue(ref(db, `/users/${auth.currentUser.uid}/userSettings`), snapshot => {
-          console.log(snapshot.val(), 'userSettings');
-        });
+        // onValue(ref(db, `/users/${auth.currentUser.uid}/userSettings`), snapshot => {
+        //   console.log(snapshot.val(), 'userSettings');
+        // });
       }
     });
   }, []);
