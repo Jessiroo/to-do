@@ -34,9 +34,6 @@ const HomePage = () => {
 
   // Save List if Changes Present and No Recent Activity
   useEffect(() => {
-    console.log(list, 'list');
-    console.log(changesPresent, 'changesPresent');
-
     if (changesPresent) {
       const saveTimeout = setTimeout(() => {
         saveList(list);

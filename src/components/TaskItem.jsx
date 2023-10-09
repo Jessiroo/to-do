@@ -5,6 +5,7 @@ import Card from '../Layout/Card';
 import EditModal from './EditModal';
 import classes from './TaskItem.module.css';
 import ListContext from '../context/list-context';
+import ColorContext from '../context/color-context';
 
 const TaskItem = (props) => {
   const [openEdit, setOpenEdit] = useState(false);
@@ -13,6 +14,7 @@ const TaskItem = (props) => {
     moveItemUp,
     moveItemDown
   } = useContext(ListContext);
+  const { colors } = useContext(ColorContext);
 
   // Click Handlers
   const removeTaskItemHandler = () => {
@@ -40,7 +42,7 @@ const TaskItem = (props) => {
 
   // Component Return
   return (
-    <Card className={classes.taskItem}>
+    <Card className={classes.taskItem} priority={props.priority}>
       {openEdit && 
         <EditModal 
           id={props.id}

@@ -1,9 +1,13 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 import classes from './Navbar.module.css';
 import useAuth from '../hooks/use-auth';
+import ColorContext from '../context/color-context';
 
 const Navbar = (props) => {
   const { clearUser } = useAuth();
+  const { colors } = useContext(ColorContext);
 
   const signOutHandler = () => {
     if (props.onSignOut) {
@@ -15,7 +19,7 @@ const Navbar = (props) => {
 
   // Dynamic Colors
   // TESTING, will make this dynamic based on preferences
-  const linkColor = { color: 'black' };
+  const linkColor = { color: colors.fontNav };
 
   return (
     <div className={classes.navbar}>

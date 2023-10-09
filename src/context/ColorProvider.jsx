@@ -4,20 +4,20 @@ import ColorContext from "./color-context";
 // Default color settings
 const defaultColors = {
   backgroundGradientTop: '#00aaff',
-  backgroundGradientBottom: 'white',
-  fontNav: 'white',
-  fontGeneral: 'black',
-  fontLow: 'black',
-  fontMedium: 'black',
-  fontHigh: 'black',
-  cardGeneral: '#ffffffcc',
-  cardLow: 'white',
-  cardMedium: 'white',
-  cardHigh: 'white',
-  cardModal: 'white',
-  button: 'white',
-  buttonFont: 'black',
-  buttonHover: '#00aaff40',
+  backgroundGradientBottom: '#ffffff',
+  fontNav: '#ffffff',
+  fontGeneral: '#000000',
+  fontLow: '#000000',
+  fontMedium: '#000000',
+  fontHigh: '#000000',
+  cardGeneral: '#ffffff', // #ffffffcc
+  cardLow: '#ffffff',
+  cardMedium: '#ffffff',
+  cardHigh: '#ffffff',
+  cardModal: '#ffffff',
+  button: '#ffffff',
+  buttonFont: '#000000',
+  buttonHover: '#00aaff', // #00aaff40
 };
 
 // Colors Reducer Fn

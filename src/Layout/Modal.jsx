@@ -1,7 +1,8 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import ReactDOM from 'react-dom';
 
 import classes from './Modal.module.css';
+import ColorContext from "../context/color-context";
 
 // Backdrop
 const Backdrop = (props) => {
@@ -12,8 +13,13 @@ const Backdrop = (props) => {
 
 // Modal Overlay
 const ModalOverlay = (props) => {
+  const { colors } = useContext(ColorContext);
+
+  // Dynamic Styling
+  const modalColors = { backgroundColor: colors.cardModal, color: colors.fontGeneral };
+
   return (
-    <div className={classes.modal}>
+    <div className={classes.modal} style={modalColors}>
       {props.children}
     </div>
   );
