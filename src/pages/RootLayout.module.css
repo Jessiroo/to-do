@@ -1,10 +1,10 @@
 .main {
-  height: 100vh;
+  min-height: 100vh;
+  margin: -0.5rem;
   background: linear-gradient(rgb(0, 170, 255), white);
-  /* background: red; */
-  position: absolute;
+  position: initial;
   top: 0;
   left: 0;
-  width: 100%;
-  /* overflow: hidden; */
+  min-width: 100%;
+  /* width: 100%; */
 }

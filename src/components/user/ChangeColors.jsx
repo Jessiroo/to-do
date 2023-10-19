@@ -9,6 +9,7 @@ const ChangeColors = (props) => {
   const {
     colors,
     updateColors,
+    clearColors,
   } = useContext(ColorContext);
   const saveColors = useSaveColors();
 
@@ -99,7 +100,14 @@ const ChangeColors = (props) => {
     saveColors(newColorSet);
     props.onClose();
   };
-  const cancelUpdateColors = (event) => {
+
+  const restoreDefaultColorsHandler = (event) => {
+    event.preventDefault();
+    clearColors();
+    props.onClose();
+  };
+
+  const cancelUpdateColorsHandler = (event) => {
     event.preventDefault();
     props.onClose();
   };
@@ -243,7 +251,8 @@ const ChangeColors = (props) => {
         />
       </div>
       <div className={classes.button}>
-        <Button onClick={cancelUpdateColors}>Cancel</Button>
+        <Button onClick={cancelUpdateColorsHandler}>Cancel</Button>
+        <Button onClick={restoreDefaultColorsHandler}>Restore Defaults</Button>
         <Button onClick={updateColorsHandler}>Save Colors</Button>
       </div>
     </form>

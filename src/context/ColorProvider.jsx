@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ColorContext from "./color-context";
 
+import useSaveColors from "../hooks/use-save-colors";
+
 // Default color settings
 const defaultColors = {
   backgroundGradientTop: '#00aaff', // #00aaff
@@ -20,23 +22,19 @@ const defaultColors = {
   buttonHover: '#00aaff', // #00aaff40
 };
 
-// Colors Reducer Fn
-// const updateColors = (state, action) => {
-//   // update all colors (initial from saved prefs or saving new prefs in form)
-//   // reset colors to default
-//   return defaultColors;
-// };
-
 // Color Provider
 const ColorProvider = (props) => {
   const [colors, setColors] = useState(defaultColors);
+  const saveColors = useSaveColors();
 
   const updateColorsHandler = (newColors) => {
     setColors(newColors);
+    saveColors(colors);
   };
 
   const clearColorsHandler = () => {
     setColors(defaultColors);
+    saveColors(colors);
   };
 
   const colorContext = {
