@@ -11,7 +11,6 @@ const ChangeColors = (props) => {
     updateColors,
     clearColors,
   } = useContext(ColorContext);
-  const saveColors = useSaveColors();
 
   const [backgroundGradientTop, setBackgroundGradientTop] = useState(colors.backgroundGradientTop);
   const [backgroundGradientBottom, setBackgroundGradientBottom] = useState(colors.backgroundGradientBottom);
@@ -97,7 +96,6 @@ const ChangeColors = (props) => {
       buttonHover,
     };
     updateColors(newColorSet);
-    saveColors(newColorSet);
     props.onClose();
   };
 

@@ -27,18 +27,23 @@ const ColorProvider = (props) => {
   const [colors, setColors] = useState(defaultColors);
   const saveColors = useSaveColors();
 
+  const showSavedColorsHandler = (retrievedColors) => {
+    setColors(retrievedColors);
+  };
+
   const updateColorsHandler = (newColors) => {
     setColors(newColors);
-    saveColors(colors);
+    saveColors(newColors);
   };
 
   const clearColorsHandler = () => {
     setColors(defaultColors);
-    saveColors(colors);
+    saveColors(defaultColors);
   };
 
   const colorContext = {
     colors,
+    showSavedColors: showSavedColorsHandler, 
     updateColors: updateColorsHandler,
     clearColors: clearColorsHandler,
   };

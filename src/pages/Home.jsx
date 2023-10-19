@@ -11,11 +11,13 @@ import useSaveList from '../hooks/use-save-list';
 import TaskCard from '../components/TaskCard';
 import { onValue, ref } from 'firebase/database';
 import Navbar from '../Layout/Navbar';
+import ColorContext from '../context/color-context';
 
 const HomePage = () => {
   const [changesPresent, setChangesPresent] = useState(false);
   const saveList = useSaveList();
   const { list, setList } = useContext(ListContext);
+  const { showSavedColors } = useContext(ColorContext);
   const { clearUser } = useAuth();
   const navigate = useNavigate();
   
@@ -27,6 +29,9 @@ const HomePage = () => {
       } else {    
         onValue(ref(db, `/users/${auth.currentUser.uid}/toDoList`), snapshot => {
           setList(snapshot.val());
+        });
+        onValue(ref(db, `/users/${auth.currentUser.uid}/userColorSettings`), snapshot => {
+          showSavedColors(snapshot.val());
         });
       }
     });

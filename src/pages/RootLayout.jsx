@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import classes from './RootLayout.module.css';
