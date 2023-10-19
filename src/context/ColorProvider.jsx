@@ -28,7 +28,11 @@ const ColorProvider = (props) => {
   const saveColors = useSaveColors();
 
   const showSavedColorsHandler = (retrievedColors) => {
-    setColors(retrievedColors);
+    if (retrievedColors) {
+      setColors(retrievedColors);
+    } else {
+      setColors(defaultColors);
+    };
   };
 
   const updateColorsHandler = (newColors) => {
